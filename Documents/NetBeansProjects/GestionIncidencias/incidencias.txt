@@ -1,0 +1,20 @@
+2016-9-21 15:27:14
+agonzalez
+jramirez
+La impresora no tiene toner.
+Urgente
+2016-9-22 10:28:37
+jramirez
+afernandez
+No se ha entregado la documentacion de expediente EXP324.
+Normal
+2016-9-22 16:28:45
+smartinez
+lsuarez
+El ordenador de recepcion no funciona.
+Urgente
+2016-9-22 16:28:45
+jramirez
+lsuarez
+Mi portatil no puede acceder al wifi.
+Urgente
