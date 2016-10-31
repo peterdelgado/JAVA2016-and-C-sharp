@@ -88,6 +88,11 @@ public class DBIncidencias {
     public void setTipo(String Tipo) {
         this.Tipo = Tipo;
     }
+
+    @Override
+    public String toString() {
+        return "DBIncidencias{" + "idIncidencias=" + idIncidencias + ", HorayFecha=" + HorayFecha + ", Origen=" + Origen + ", Destino=" + Destino + ", Detalle=" + Detalle + ", Tipo=" + Tipo + '}';
+    }
   
 
 
