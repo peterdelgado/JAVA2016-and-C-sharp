@@ -11,6 +11,11 @@ package incidenciasjdbc;
  */
 public class Empleados {
 
+    @Override
+    public String toString() {
+        return "Empleados{" + "idEmpleados=" + idEmpleados + ", NombredeUsuario=" + NombredeUsuario + ", Contrasenya=" + Contrasenya + ", NombreCompleto=" + NombreCompleto + ", TelefonoContacto=" + TelefonoContacto + '}';
+    }
+
     
     
     

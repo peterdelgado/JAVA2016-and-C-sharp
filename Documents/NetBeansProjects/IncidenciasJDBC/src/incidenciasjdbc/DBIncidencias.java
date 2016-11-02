@@ -12,27 +12,27 @@ package incidenciasjdbc;
 public class DBIncidencias {
     
   private int idIncidencias;
-  private  String HorayFecha;
-  private String Origen;
-  private String Destino;
+  private String HorayFecha;
+ 
+  private Empleados Origen;
+  private Empleados Destino;
+  
   private String Detalle;
   private String Tipo;
-
-    
+ 
+  
+  
   public DBIncidencias(){
+      HorayFecha ="";
+      Detalle ="";
+      Tipo ="";
+      Origen = new Empleados();
+      Destino = new Empleados();
       
-       HorayFecha = "";
-       Origen = "";
-       Destino = "";
-       Detalle = "";
-       Tipo = "";
       
   }
-  
-  
-  
-  
-  public DBIncidencias(int idIncidencias, String HorayFecha, String Origen, String Destino, String Detalle, String Tipo) {
+
+    public DBIncidencias(int idIncidencias, String HorayFecha, Empleados Origen, Empleados Destino, String Detalle, String Tipo) {
         this.idIncidencias = idIncidencias;
         this.HorayFecha = HorayFecha;
         this.Origen = Origen;
@@ -57,19 +57,19 @@ public class DBIncidencias {
         this.HorayFecha = HorayFecha;
     }
 
-    public String getOrigen() {
+    public Empleados getOrigen() {
         return Origen;
     }
 
-    public void setOrigen(String Origen) {
+    public void setOrigen(Empleados Origen) {
         this.Origen = Origen;
     }
 
-    public String getDestino() {
+    public Empleados getDestino() {
         return Destino;
     }
 
-    public void setDestino(String Destino) {
+    public void setDestino(Empleados Destino) {
         this.Destino = Destino;
     }
 
@@ -93,7 +93,10 @@ public class DBIncidencias {
     public String toString() {
         return "DBIncidencias{" + "idIncidencias=" + idIncidencias + ", HorayFecha=" + HorayFecha + ", Origen=" + Origen + ", Destino=" + Destino + ", Detalle=" + Detalle + ", Tipo=" + Tipo + '}';
     }
+
+
   
+
 
 
 
