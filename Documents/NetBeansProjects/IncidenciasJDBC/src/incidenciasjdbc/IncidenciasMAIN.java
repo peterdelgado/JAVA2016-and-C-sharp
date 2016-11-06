@@ -24,12 +24,13 @@ public class IncidenciasMAIN {
         JDBCIncidencias miGestor = new JDBCIncidencias();
         Empleados E = new Empleados(1,"pdelgado","pepe","Peter Delgado", 654493561);
         Empleados J = new Empleados(2, "jvelasquez", "tete", "Jose Velasquez", 617899567);
-//      DBIncidencias D = new DBIncidencias(1,"5:00,25/08/16","jvalesquez","pdelgado","No funciona Wifi","Urgente");
+      DBIncidencias D = new DBIncidencias(1,"5:00,25/08/16",E,J,"No funciona Wifi","Urgente");
+       
         DBIncidencias C = new DBIncidencias(2,"4:00,25/08/16",J,E,"No funciona portatil","Urgente");
        
-       
+     
         try {
-             
+//             miGestor.insertarIncidencia(D);
 //               miGestor.InsertarEmpleado(J);
             
 //                miGestor.insertarIncidencia(C);
@@ -54,23 +55,23 @@ public class IncidenciasMAIN {
             
             System.out.println("Insertando Datos...");
      
-//            miGestor.InsertarIncidencia(D);
+            
 //            miGestor.InsertarIncidencia(C);
             System.out.println("Datos Insertado");
             System.out.println("Listado de Incidencias");
             
-//       List<DBIncidencias> lasIncidencias = miGestor.selectallIncidencias();
-//       for (DBIncidencias actual : lasIncidencias){
-//       System.out.println(actual);
-//       }
-       
-       System.out.println("ListadodeUnaIncidencia");
-//        
-       List<DBIncidencias> UnaIncidencias = miGestor.selectaIncidencias();
-       for (DBIncidencias actual : UnaIncidencias){
+       List<DBIncidencias> lasIncidencias = miGestor.selectallIncidencias();
+       for (DBIncidencias actual : lasIncidencias){
        System.out.println(actual);
-       
        }
+       
+//       System.out.println("ListadodeUnaIncidencia");
+////        
+//       List<DBIncidencias> UnaIncidencias = miGestor.selectaIncidencias();
+//       for (DBIncidencias actual : UnaIncidencias){
+//       System.out.println(actual);
+       
+//       }
 //       
         } catch (SQLException ex) {
            System.out.println(ex.getMessage());

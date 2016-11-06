@@ -46,36 +46,38 @@ public void InsertarEmpleado (Empleados E) throws SQLException {
    desconectar();
 }
       
-// public List <DBIncidencias> selectallIncidencias() throws SQLException {
+ public List <DBIncidencias> selectallIncidencias() throws SQLException {
     
-//    List <DBIncidencias> lasIncidencias = new ArrayList<>(); 
-//    conectar();
-//    String query = "select * from Incidencias;";
-//    Statement consulta = conexion.createStatement();
-//    ResultSet resultado = consulta.executeQuery(query);
-//    
-//    while(resultado.next()) {
-// 
-//        DBIncidencias I = new DBIncidencias();
-//        
-//        I.setIdIncidencias(resultado.getInt("IdIncidencias"));
-//        I.setHorayFecha(resultado.getString("HorayFecha"));
-//        
-//        I.setOrigen(resultado.getString("Origen"));//Aqui tengo el problema me dice String cannot be converted to Empleados
-//        I.setDestino(resultado.getString("Destino"));
-//        
-//        I.setDetalle(resultado.getString("Detalle"));
-//        I.setTipo(resultado.getString("Tipo"));
-//        lasIncidencias.add(I);
-//        
-//    }
-//    resultado.close();
-//    consulta.close();
-//    desconectar();
-//    return lasIncidencias;
-//           
-//             
-//}
+    List <DBIncidencias> lasIncidencias = new ArrayList<>(); 
+    conectar();
+    String query = "select idIncidencias, origen, destino, detalle, tipo  from Incidencias join empleados on incidencias.idIncidencias = empleados.idEmpleados";
+
+    
+        Statement consulta = conexion.createStatement();
+    ResultSet resultado = consulta.executeQuery(query);
+    
+    while(resultado.next()) {
+ 
+        DBIncidencias I = new DBIncidencias();
+        
+        I.setIdIncidencias(resultado.getInt("IdIncidencias"));
+        I.setHorayFecha(resultado.getString("HorayFecha"));
+        
+        I.getOrigen().setNombredeUsuario(resultado.getString("Origen"));                                     //Aqui tengo el problema me dice String cannot be converted to Empleados
+        I.getDestino().setNombreCompleto(resultado.getString("Destino"));
+        
+        I.setDetalle(resultado.getString("Detalle"));
+        I.setTipo(resultado.getString("Tipo"));
+        lasIncidencias.add(I);
+        
+    }
+    resultado.close();
+    consulta.close();
+    desconectar();
+    return lasIncidencias;
+           
+             
+}
  
 
  
@@ -148,55 +150,55 @@ public void InsertarEmpleado (Empleados E) throws SQLException {
    desconectar();
 }
  
- public List <DBIncidencias> selectaIncidencias() throws SQLException {
-    
-    List <DBIncidencias> lasIncidencias = new ArrayList<>(); 
-    conectar();
-    String query = "select * from Incidencias where idincidencias=2";
-    Statement consulta = conexion.createStatement();
-    ResultSet resultado = consulta.executeQuery(query);
-    
-    while(resultado.next()) {
- 
-        DBIncidencias I = new DBIncidencias();
-        
-        I.setIdIncidencias(resultado.getInt("IdIncidencias"));
-        I.setHorayFecha(resultado.getString("HorayFecha"));
-        
-        I.setDestino(resultado.getString("Destino"));
-        I.getDestino().setNombredeUsuario("Destino");
-        
-        I.setDetalle(resultado.getString("Detalle"));
-        I.setTipo(resultado.getString("Tipo"));
-        lasIncidencias.add(I);
-        
-    }
-    resultado.close();
-    consulta.close();
-    desconectar();
-    return lasIncidencias;
-           
-             
-}
- 
+// public List <DBIncidencias> selectaIncidencias() throws SQLException {
+//    
+//    List <DBIncidencias> lasIncidencias = new ArrayList<>(); 
+//    conectar();
+//    String query = "select * from Incidencias where idincidencias=2";
+//    Statement consulta = conexion.createStatement();
+//    ResultSet resultado = consulta.executeQuery(query);
+//    
+//    while(resultado.next()) {
 // 
- public void insertarIncidencia(DBIncidencias m) throws SQLException {
-        conectar();
-        String insert = "insert into incidencias values(?, ?, ?, ?, ?,?);";
-        PreparedStatement ps = conexion.prepareStatement(insert);
-        ps.setInt(1, m.getIdIncidencias());
-        ps.setString(2,m.getHorayFecha());
-        ps.setString(3, m.getOrigen().getNombreCompleto());
-        ps.setString(4, m.getDestino().getNombredeUsuario());
-        ps.setString(5, m.getDetalle());
-        ps.setString(6, m.getTipo());
-        ps.executeUpdate();
-        ps.close();
-        
-        
-       
-        desconectar();
-    }
+//        DBIncidencias I = new DBIncidencias();
+//        
+//        I.setIdIncidencias(resultado.getInt("IdIncidencias"));
+//        I.setHorayFecha(resultado.getString("HorayFecha"));
+//        
+//        I.getOrigen().
+//        I.getDestino().setNombredeUsuario("Destino");
+//        
+//        I.setDetalle(resultado.getString("Detalle"));
+//        I.setTipo(resultado.getString("Tipo"));
+//        lasIncidencias.add(I);
+//        
+//    }
+//    resultado.close();
+//    consulta.close();
+//    desconectar();
+//    return lasIncidencias;
+//           
+//             
+//}
+// 
+//// 
+// public void insertarIncidencia(DBIncidencias m) throws SQLException {
+//        conectar();
+//        String insert = "insert into incidencias values(?, ?, ?, ?, ?,?);";
+//        PreparedStatement ps = conexion.prepareStatement(insert);
+//        ps.setInt(1, m.getIdIncidencias());
+//        ps.setString(2,m.getHorayFecha());
+//        ps.setString(3, m.getOrigen().getNombreCompleto());
+//        ps.setString(4, m.getDestino().getNombredeUsuario());
+//        ps.setString(5, m.getDetalle());
+//        ps.setString(6, m.getTipo());
+//        ps.executeUpdate();
+//        ps.close();
+//        
+//        
+//       
+//        desconectar();
+//    }
  
 // 
  
