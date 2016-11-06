@@ -13,7 +13,7 @@ import Vehiculos.Vehiculos;
 
 import java.util.ArrayList;
 import java.util.*;
-
+import java.util.Scanner;
 
 
 
@@ -38,80 +38,63 @@ public class MainAlquilerVehiculos {
     cars.add(D);
     cars.add(F); 
     
-    
-    
-     
     for (Vehiculos t : cars) {
     System.out.println("Vehiculos en el Garage: "+t.getIdMatricula()+ " "+ t.getTipo());
      }
     
+     System.out.println("Que matricula de Vehiculo quieres?");
+     Scanner scanner = new Scanner(System.in);
+     int p = scanner.nextInt();
      
+     if (p == 444 ) {
+     Coche c = new Coche(444,"Chevy");     
      
+     System.out.println("Por cuantos dias?");
+     Scanner nscanner = new Scanner(System.in);
+     int dias = nscanner.nextInt();
          
          
-     for (Vehiculos p : cars) {
-         
-            
-             if (p instanceof Coche) {
-                Coche c = (Coche) p;
-                
-                System.out.println("Que Matricula de vehiculos Quieres?");
-                c.setIdMatricula(444);
-                
-                System.out.println("Cuantos dias quieres el coche?");
-                c.setDias(3);
-                
-                System.out.println("Para alquilar el vehiculo con Matricula "+ c.getIdMatricula() +" para "+  c.getDias() + " dias,el total es: "+c.calcularPreciocoche(3, 2));
-   
-             } 
-                
-                if (p instanceof Microbuses) {
-                Microbuses c = (Microbuses) p;
-                
-                
-                
-               System.out.println("Que Matricula de vehiculos Quieres?");
-                c.setIdMatricula(333);
-                
-                System.out.println("Cuantos dias quieres el coche?");
-                c.setDias(2);
-                
-                System.out.println("Para alquilar el vehiculo con Matricula "+ c.getIdMatricula() +" para "+  c.getDias() + " dias,el total es: "+c.calcularPrecioMicrobus(2, 1));
-            }
-            
-                
-                
-                
-                
-                if (p instanceof VehiculodeCarga) {
-                VehiculodeCarga e = (VehiculodeCarga) p;
-                 System.out.println("Que Matricula de vehiculos Quieres?");
-                e.setIdMatricula(222);
-                
-                System.out.println("Cuantos dias quieres el coche?");
-                e.setDias(1);
-                
-                System.out.println("Para alquilar el vehiculo con Matricula "+ e.getIdMatricula() +" para "+  e.getDias() + " dias,el total es: "+e.calcularPrecioVehiculodeCarga(1, 1, 5, "Normal"));
-            }
-            
-               if (p instanceof VehiculodeCarga) {
-                VehiculodeCarga e = (VehiculodeCarga) p;
-                 System.out.println("Que Matricula de vehiculos Quieres?");
-                e.setIdMatricula(111);
-                
-                System.out.println("Cuantos dias quieres el coche?");
-                e.setDias(1);
-                
-                System.out.println("Para alquilar el vehiculo con Matricula "+ e.getIdMatricula() +" para "+  e.getDias() + " dias,el total es: "+e.calcularPrecioVehiculodeCarga(1, 1, 5, "Camion"));
-            } 
+     System.out.println( "Te va costar:" + c.calcularPreciocoche(dias, 3));
+                 
+                 
+                 }      
 
-             } 
-  
+    
+     
+     
+     if (p == 333 ) {
+     Microbuses c = new Microbuses(333,"Mercedes");     
+     
+     System.out.println("Por cuantos dias?");
+     Scanner nscanner = new Scanner(System.in);
+     int dias = nscanner.nextInt();
+         
+     System.out.println( "Te va costar:" + c.calcularPrecioMicrobus(dias, 1));
+                 
+                 
+                 }     
+         
+     
+         
+     
+     
+     if (p == 222 ) {
+     VehiculodeCarga x = new VehiculodeCarga(222,"BMW");     
+     
+     System.out.println("Por cuantos dias?");
+     Scanner nscanner = new Scanner(System.in);
+     int dias = nscanner.nextInt();
+         
+     System.out.println( "Te va costar:" + x.calcularPrecioVehiculodeCarga(dias, 2, 5, "Normal"));
+             
+     }        
+   
+                
+    }          
   
 }
+
   
   
-  
-  
-}
+
     
