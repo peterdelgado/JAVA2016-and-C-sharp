@@ -16,6 +16,7 @@ import java.util.List;
 
 
 
+
 /**
  *
  * @author pedro
@@ -45,15 +46,87 @@ public void InsertarEmpleado (Empleados E) throws SQLException {
     
    desconectar();
 }
+
+public boolean ValidarUsuario(String NombredeUsuario, String Contrasenya ) throws SQLException{
+    boolean existe;
+     conectar();
+     //definimos la consulta
+    String query = "select * from empleados where nombredeusuario='" + NombredeUsuario+ "' and contrasenya='" + Contrasenya+"'";
+   // creamos el statement para poder ejecutarlo
+    Statement st = conexion.createStatement();
+//     ejecutamos la consulta y recogemos el resultado
+    ResultSet rs = st.executeQuery(query);
+    
+    if (rs.next()) {
+     
+     existe = true;
+   
+     }
+     
+     else {
+     existe = false;
+     }
+     rs.close();
+     st.close();
+     desconectar();
+     return existe;
+     
+     
+     
+ }
+
+
+public void ModificarEmpleado (Empleados E) throws SQLException {
+    conectar();
+    
+    String insert = "update Empleados set NombreCompleto=('Joseula Velalu') where NombredeUsuario=('jvelasquez')";
+    PreparedStatement NewEmpleado = conexion.prepareStatement(insert);
+    
+    
+    NewEmpleado.executeUpdate();
+    NewEmpleado.close();
+    
+   desconectar();
+}
+
+public void CambiarContrasenya (Empleados E) throws SQLException {
+    conectar();
+    
+    String insert = "update Empleados set Contrasenya=('tete') where Contrasenya=('pepe')";
+    PreparedStatement NewEmpleado = conexion.prepareStatement(insert);
+    
+    
+    NewEmpleado.executeUpdate();
+    NewEmpleado.close();
+    
+   desconectar();
+}
+
+public void EliminarEmpleado (Empleados E) throws SQLException {
+    conectar();
+    
+    String insert = "DELETE FROM empleados WHERE NombredeUsuario='jvelasquez';";
+    PreparedStatement NewEmpleado = conexion.prepareStatement(insert);
+    
+    
+    NewEmpleado.executeUpdate();
+    NewEmpleado.close();
+    
+   desconectar();
+}
+
       
- public List <DBIncidencias> selectallIncidencias() throws SQLException {
+ 
+ 
+
+
+ 
+ public List <DBIncidencias> selectaIncidencias() throws SQLException {
     
     List <DBIncidencias> lasIncidencias = new ArrayList<>(); 
     conectar();
-    String query = "select idIncidencias, origen, destino, detalle, tipo  from Incidencias join empleados on incidencias.idIncidencias = empleados.idEmpleados";
-
-    
-        Statement consulta = conexion.createStatement();
+    String query = "select * from Incidencias where idincidencias=2";
+    Statement consulta = conexion.createStatement();
     ResultSet resultado = consulta.executeQuery(query);
     
     while(resultado.next()) {
@@ -63,7 +136,38 @@ public void InsertarEmpleado (Empleados E) throws SQLException {
         I.setIdIncidencias(resultado.getInt("IdIncidencias"));
         I.setHorayFecha(resultado.getString("HorayFecha"));
         
-        I.getOrigen().setNombredeUsuario(resultado.getString("Origen"));                                     //Aqui tengo el problema me dice String cannot be converted to Empleados
+        I.getOrigen().setNombredeUsuario(resultado.getString("Origen"));                                     
+        I.getDestino().setNombreCompleto(resultado.getString("Destino"));
+        
+        I.setDetalle(resultado.getString("Detalle"));
+        I.setTipo(resultado.getString("Tipo"));
+        lasIncidencias.add(I);
+        
+    }
+    resultado.close();
+    consulta.close();
+    desconectar();
+    return lasIncidencias;
+           
+        
+}
+ 
+public List <DBIncidencias> selectallIncidencias() throws SQLException {
+    
+    List <DBIncidencias> lasIncidencias = new ArrayList<>(); 
+    conectar();
+    String query = "select * FROM Incidencias";
+    Statement consulta = conexion.createStatement();
+    ResultSet resultado = consulta.executeQuery(query);
+    
+    while(resultado.next()) {
+ 
+        DBIncidencias I = new DBIncidencias();
+        
+        I.setIdIncidencias(resultado.getInt("IdIncidencias"));
+        I.setHorayFecha(resultado.getString("HorayFecha"));
+        
+        I.getOrigen().setNombredeUsuario(resultado.getString("Origen"));                                     
         I.getDestino().setNombreCompleto(resultado.getString("Destino"));
         
         I.setDetalle(resultado.getString("Detalle"));
@@ -78,160 +182,134 @@ public void InsertarEmpleado (Empleados E) throws SQLException {
            
              
 }
- 
 
- 
- public boolean ValidarUsuario(String NombredeUsuario, String Contrasenya ) throws SQLException{
-    boolean existe;
-     conectar();
-     //definimos la consulta
-    String query = "select * from empleados where nombredeusuario='" + NombredeUsuario+ "' and contrasenya='" + Contrasenya+"'";
-   // creamos el statement para poder ejecutarlo
-    Statement st = conexion.createStatement();
-//     ejecutamos la consulta y recogemos el resultado
-    ResultSet rs = st.executeQuery(query);
-    
-    if (rs.next()) {
-     
-     existe = true;
-     
-     }
-     
-     else {
-     existe = false;
-     }
-     rs.close();
-     st.close();
-     desconectar();
-     return existe;
-     
-     
-     
- }
- 
 
- public void ModificarEmpleado (Empleados E) throws SQLException {
-    conectar();
-    
-    String insert = "update Empleados set NombreCompleto=('Joseula Velalu') where NombredeUsuario=('jvelasquez')";
-    PreparedStatement NewEmpleado = conexion.prepareStatement(insert);
-    
-    
-    NewEmpleado.executeUpdate();
-    NewEmpleado.close();
-    
-   desconectar();
-}
 
+ public void insertarIncidencia(DBIncidencias m) throws SQLException {
+        conectar();
+        String insert = "insert into incidencias values(?, ?, ?, ?, ?,?);";
+        PreparedStatement ps = conexion.prepareStatement(insert);
+        ps.setInt(1, m.getIdIncidencias());
+        ps.setString(2,m.getHorayFecha());
+        ps.setString(3, m.getOrigen().getNombreCompleto());
+        ps.setString(4, m.getDestino().getNombredeUsuario());
+        ps.setString(5, m.getDetalle());
+        ps.setString(6, m.getTipo());
+        ps.executeUpdate();
+        ps.close();
+        
+        
+       
+        desconectar();
+    }
  
- public void CambiarContrasenya (Empleados E) throws SQLException {
+ 
+ 
+ public List <DBIncidencias> ObtenerIncidenciaEmpleado() throws SQLException {
+    
+    List <DBIncidencias> lasIncidencias = new ArrayList<>(); 
     conectar();
+    String query = "select *  from Incidencias join empleados on incidencias.idIncidencias = empleados.idEmpleados where idEmpleados=1;";
+    Statement consulta = conexion.createStatement();
+    ResultSet resultado = consulta.executeQuery(query);
     
-    String insert = "update Empleados set Contrasenya=('tete') where Contrasenya=('pepe')";
-    PreparedStatement NewEmpleado = conexion.prepareStatement(insert);
-    
-    
-    NewEmpleado.executeUpdate();
-    NewEmpleado.close();
-    
-   desconectar();
-}
+    while(resultado.next()) {
  
- public void EliminarEmpleado (Empleados E) throws SQLException {
+        DBIncidencias I = new DBIncidencias();
+        
+        I.setIdIncidencias(resultado.getInt("IdIncidencias"));
+        I.setHorayFecha(resultado.getString("HorayFecha"));
+        I.getOrigen().setNombredeUsuario(resultado.getString("Origen"));                                     
+        I.getDestino().setNombreCompleto(resultado.getString("Destino"));
+        I.setDetalle(resultado.getString("Detalle"));
+        I.setTipo(resultado.getString("Tipo"));
+        lasIncidencias.add(I);
+        
+    }
+    resultado.close();
+    consulta.close();
+    desconectar();
+    return lasIncidencias;
+       
+        
+    }
+ 
+ 
+ public void insertarHistoria(Historial m) throws SQLException {
+        conectar();
+        String insert = "insert into historial values(?, ?, ?, ?);";
+        PreparedStatement ps = conexion.prepareStatement(insert);
+        ps.setInt(1, m.getIdHistorial());
+        ps.setString(2,m.getNombredeUsuario());
+        ps.setString(3, m.getTipodeEvento());
+        ps.setString(4,m.getFechayHora());
+        
+       
+        ps.executeUpdate();
+        ps.close();
+        
+        
+       
+        desconectar();
+        
+    }
+ 
+ public List <Historial> ObtenerHistorialRanking() throws SQLException {
+    
+    List <Historial> lasHistoriales = new ArrayList<>(); 
     conectar();
+    String query = "SELECT * FROM historial WHERE tipodeevento = 'U' GROUP BY idHistorial;";
+    Statement consulta = conexion.createStatement();
+    ResultSet resultado = consulta.executeQuery(query);
     
-    String insert = "DELETE FROM empleados WHERE NombredeUsuario='jvelasquez';";
-    PreparedStatement NewEmpleado = conexion.prepareStatement(insert);
+    while(resultado.next()) {
+ 
+        Historial I = new Historial();
+        
+        I.setIdHistorial(resultado.getInt("IdHistorial"));
+        I.setNombredeUsuario(resultado.getString("NombredeUsuario"));
+        I.setTipodeEvento(resultado.getString("TipodeEvento"));
+        I.setFechayHora(resultado.getString("FechayHora"));
+        
+        lasHistoriales.add(I);
+        
+    }
+    resultado.close();
+    consulta.close();
+    desconectar();
+    return lasHistoriales;
+       
+        
+    }
+ 
+ 
+ public List <Historial> ObtenerHistorialRankingEmpleado() throws SQLException {
     
+    List <Historial> lasHistoriales = new ArrayList<>(); 
+    conectar();
+    String query = "SELECT * FROM historial Join empleados ON historial.NombredeUsuario = empleados.NombredeUsuario WHERE tipodeevento = 'U' and NombreCompleto = 'Peter Delgado'";
+    Statement consulta = conexion.createStatement();
+    ResultSet resultado = consulta.executeQuery(query);
     
-    NewEmpleado.executeUpdate();
-    NewEmpleado.close();
-    
-   desconectar();
-}
+    while(resultado.next()) {
  
-// public List <DBIncidencias> selectaIncidencias() throws SQLException {
-//    
-//    List <DBIncidencias> lasIncidencias = new ArrayList<>(); 
-//    conectar();
-//    String query = "select * from Incidencias where idincidencias=2";
-//    Statement consulta = conexion.createStatement();
-//    ResultSet resultado = consulta.executeQuery(query);
-//    
-//    while(resultado.next()) {
-// 
-//        DBIncidencias I = new DBIncidencias();
-//        
-//        I.setIdIncidencias(resultado.getInt("IdIncidencias"));
-//        I.setHorayFecha(resultado.getString("HorayFecha"));
-//        
-//        I.getOrigen().
-//        I.getDestino().setNombredeUsuario("Destino");
-//        
-//        I.setDetalle(resultado.getString("Detalle"));
-//        I.setTipo(resultado.getString("Tipo"));
-//        lasIncidencias.add(I);
-//        
-//    }
-//    resultado.close();
-//    consulta.close();
-//    desconectar();
-//    return lasIncidencias;
-//           
-//             
-//}
-// 
-//// 
-// public void insertarIncidencia(DBIncidencias m) throws SQLException {
-//        conectar();
-//        String insert = "insert into incidencias values(?, ?, ?, ?, ?,?);";
-//        PreparedStatement ps = conexion.prepareStatement(insert);
-//        ps.setInt(1, m.getIdIncidencias());
-//        ps.setString(2,m.getHorayFecha());
-//        ps.setString(3, m.getOrigen().getNombreCompleto());
-//        ps.setString(4, m.getDestino().getNombredeUsuario());
-//        ps.setString(5, m.getDetalle());
-//        ps.setString(6, m.getTipo());
-//        ps.executeUpdate();
-//        ps.close();
-//        
-//        
-//       
-//        desconectar();
-//    }
- 
-// 
- 
-// public List <DBIncidencias> ObtenerIncidenciaEmpleado() throws SQLException {
-//    
-//    List <DBIncidencias> lasIncidencias = new ArrayList<>(); 
-//    conectar();
-//    String query = "select * from Incidencias where idincidencias=1";
-//    Statement consulta = conexion.createStatement();
-//    ResultSet resultado = consulta.executeQuery(query);
-//    
-//    while(resultado.next()) {
-// 
-//        DBIncidencias I = new DBIncidencias();
-//        
-//        I.setIdIncidencias(resultado.getInt("IdIncidencias"));
-//        I.setHorayFecha(resultado.getString("HorayFecha"));
-//        I.setOrigen(resultado.getString("Origen"));
-//        I.setDestino(resultado.getString("Destino"));
-//        
-//        I.setDetalle(resultado.getString("Detalle"));
-//        I.setTipo(resultado.getString("Tipo"));
-//        lasIncidencias.add(I);
-//        
-//    }
-//    resultado.close();
-//    consulta.close();
-//    desconectar();
-//    return lasIncidencias;
-//           
-//             
-//}
- 
+        Historial I = new Historial();
+        
+        I.setIdHistorial(resultado.getInt("IdHistorial"));
+        I.setNombredeUsuario(resultado.getString("NombredeUsuario"));
+        I.setTipodeEvento(resultado.getString("TipodeEvento"));
+        I.setFechayHora(resultado.getString("FechayHora"));
+        
+        lasHistoriales.add(I);
+        
+    }
+    resultado.close();
+    consulta.close();
+    desconectar();
+    return lasHistoriales;
+       
+        
+    }
  
 private void conectar () throws SQLException {
 
