@@ -1,0 +1,103 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package incidenciasdb4o;
+
+/**
+ *
+ * @author pedro
+ */
+public class DBIncidencias {
+    
+  private int idIncidencias;
+  private String HorayFecha;
+ 
+  private Empleados Origen;
+  private Empleados Destino;
+  
+  private String Detalle;
+  private String Tipo;
+ 
+  
+  
+  public DBIncidencias(){
+      HorayFecha ="";
+      Detalle ="";
+      Tipo ="";
+      Origen = new Empleados();
+      Destino = new Empleados();
+      
+      
+  }
+
+    public DBIncidencias(int idIncidencias, String HorayFecha, Empleados Origen, Empleados Destino, String Detalle, String Tipo) {
+        this.idIncidencias = idIncidencias;
+        this.HorayFecha = HorayFecha;
+        this.Origen = Origen;
+        this.Destino = Destino;
+        this.Detalle = Detalle;
+        this.Tipo = Tipo;
+    }
+
+    public int getIdIncidencias() {
+        return idIncidencias;
+    }
+
+    public void setIdIncidencias(int idIncidencias) {
+        this.idIncidencias = idIncidencias;
+    }
+
+    public String getHorayFecha() {
+        return HorayFecha;
+    }
+
+    public void setHorayFecha(String HorayFecha) {
+        this.HorayFecha = HorayFecha;
+    }
+
+    public Empleados getOrigen() {
+        return Origen;
+    }
+
+    public void setOrigen(Empleados Origen) {
+        this.Origen = Origen;
+    }
+
+    public Empleados getDestino() {
+        return Destino;
+    }
+
+    public void setDestino(Empleados Destino) {
+        this.Destino = Destino;
+    }
+
+    public String getDetalle() {
+        return Detalle;
+    }
+
+    public void setDetalle(String Detalle) {
+        this.Detalle = Detalle;
+    }
+
+    public String getTipo() {
+        return Tipo;
+    }
+
+    public void setTipo(String Tipo) {
+        this.Tipo = Tipo;
+    }
+
+    @Override
+    public String toString() {
+        return "DBIncidencias{" + "idIncidencias=" + idIncidencias + ", HorayFecha=" + HorayFecha + ", Origen=" + Origen + ", Destino=" + Destino + ", Detalle=" + Detalle + ", Tipo=" + Tipo + '}';
+    }
+
+
+  
+
+
+
+
+}
