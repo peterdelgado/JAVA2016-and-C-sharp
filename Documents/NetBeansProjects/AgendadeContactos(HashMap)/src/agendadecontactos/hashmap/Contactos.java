@@ -43,17 +43,25 @@ public class Contactos {
     @Override public int hashCode() { 
            int result = 0;
             result = this.getNumerodeTelefono() / 100 + this.Nombre.length();
-            return 31;
+            return result;
              }
+            
+    
+    
     
     @Override public boolean equals(Object obj) { 
-        Country other = (Country) obj; 
-        if (name.equalsIgnoreCase((other.name))) 
+        Contactos other = (Contactos) obj; 
+        
+        if (NumerodeTelefono == other.NumerodeTelefono){
             return true; 
-        return false; }
+        }
+        else {
+            return false; 
+        }
 
     
     
     
     
+}
 }

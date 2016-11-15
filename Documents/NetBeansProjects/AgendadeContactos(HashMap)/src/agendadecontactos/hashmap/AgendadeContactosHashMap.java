@@ -8,6 +8,7 @@
  */
 package agendadecontactos.hashmap;
 import java.util.*;
+import static jdk.nashorn.internal.objects.NativeArray.map;
 /**
  *
  * @author pedro
@@ -25,9 +26,10 @@ public class AgendadeContactosHashMap {
         
         
         Contactos Pedro = new Contactos("Pedro Delgado", 654493561);
+        
         Contactos Luis  = new Contactos("Luis Perral", 671888111);
         Contactos Pepe  = new Contactos("Pepe Lepiu", 611999111);
-        Contactos MamaPepe = new Contactos("Mamade Pepe", 611999111);
+        Contactos MamaPepe = new Contactos("Mama Pepe", 611999111);
         Contactos Jimmy = new Contactos ("Jimmy Choo", 620000333);
         
        contactoshmap.put(Pedro, "Pedro" );
@@ -41,12 +43,15 @@ public class AgendadeContactosHashMap {
       
       String como = contactoshmap.get(contactosObj);
       
-      System.out.println("Clave: " + contactosObj + " -> Valor: " + contactoshmap.getOrDefault(contactosObj, como));
+      System.out.println("Valor: " + contactosObj + " -> Clave: " + contactoshmap.getOrDefault(contactosObj, como));
+//      System.out.println("Valor: " + contactosObj + " -> Clave: " + contactoshmap.getOrDefault(contactosObj, como));
+//      System.out.println(Collections.singletonList(contactoshmap));
+      }
       
-      
-      
+      System.out.println("Hay duplicados de un NumerodeTelefono:" + Luis.equals(Pepe));  
+      System.out.println("Hay duplicados de un NumerodeTelefono:" + Contactos.equals(Contactos)); 
         
     }
-    
+  
     }
-}
+
