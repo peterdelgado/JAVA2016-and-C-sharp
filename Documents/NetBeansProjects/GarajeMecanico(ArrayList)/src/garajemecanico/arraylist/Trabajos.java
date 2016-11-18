@@ -11,19 +11,23 @@ package garajemecanico.arraylist;
  */
 public class Trabajos {
     
+    private static int counter = 0;
     private int IdTrabajo;
-    private String TrabajoDescripcion;
+    String TrabajoDescripcion;
     private int horas;
+    private static int contador = 0;
     
     
     public Trabajos() {
-    
+    TrabajoDescripcion = "";
     IdTrabajo = 0;
     horas = 0;
 }
 
     public Trabajos(int IdTrabajo, String TrabajoDescripcion, int horas) {
-        this.IdTrabajo = IdTrabajo;
+        counter++;
+        
+        this.IdTrabajo = counter;
         this.TrabajoDescripcion = TrabajoDescripcion;
         this.horas = horas;
     }
@@ -32,7 +36,8 @@ public class Trabajos {
         return IdTrabajo;
     }
 
-    public void setIdTrabajo(int IdTrabajo) {
+    public void setIdTrabajo() {
+        
         this.IdTrabajo = IdTrabajo;
     }
 
@@ -40,7 +45,7 @@ public class Trabajos {
         return TrabajoDescripcion;
     }
 
-    public void setTrabajoDescripcion(String TrabajoDescripcion) {
+    public void setTrabajoDescripcion(String t) {
         this.TrabajoDescripcion = TrabajoDescripcion;
     }
 
@@ -49,12 +54,17 @@ public class Trabajos {
     }
 
     public void setHoras(int horas) {
+       
+       
         this.horas = horas;
+        
     }
 
     @Override
     public String toString() {
         return "Trabajos{" + "IdTrabajo=" + IdTrabajo + ", TrabajoDescripcion=" + TrabajoDescripcion + ", horas=" + horas + '}';
     }
+
+    
     
 }

@@ -9,17 +9,18 @@ package garajemecanico.arraylist;
  *
  * @author pedro
  */
-public class Reparaciones extends Trabajos {
+public class ReparaciondeChapayPintura extends Trabajos {
 
-    public Reparaciones(int IdTrabajo, String TrabajoDescripcion, int horas) {
+    public ReparaciondeChapayPintura(int IdTrabajo, String TrabajoDescripcion, int horas) {
         super(IdTrabajo, TrabajoDescripcion, horas);
     }
     
-    public double PrecioReparaciones(double horas, double costedePieza) {
+    public double PrecioReparacionesChapayPintura(double horas, double costedePieza) {
     double precio;
-    costedePieza = costedePieza * 1.1;
-    precio = costedePieza + horas * 30;
+    costedePieza = costedePieza * 1.3;
+    precio = costedePieza + (horas * 30);
         return precio;
+    }
     
-}
+    
 }
