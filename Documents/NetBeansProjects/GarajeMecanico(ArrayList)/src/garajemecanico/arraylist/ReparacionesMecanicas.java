@@ -10,17 +10,16 @@ package garajemecanico.arraylist;
  * @author pedro
  */
 public class ReparacionesMecanicas extends Trabajos {
-    public static int contador = 0;
     
     
-    public ReparacionesMecanicas(String TrabajoDescripcion) {
-        contador++;
-        this.TrabajoDescripcion = TrabajoDescripcion;
+    
+    public ReparacionesMecanicas() {
+        
+        
    }
 
-    
-    public ReparacionesMecanicas(int IdTrabajo, String TrabajoDescripcion, int horas) {
-        super(IdTrabajo, TrabajoDescripcion, horas);
+   public ReparacionesMecanicas(int IdTrabajo, String TrabajoDescripcion, int horas, int costedePieza) {
+   super(IdTrabajo, TrabajoDescripcion, horas, costedePieza);
         
           }
     

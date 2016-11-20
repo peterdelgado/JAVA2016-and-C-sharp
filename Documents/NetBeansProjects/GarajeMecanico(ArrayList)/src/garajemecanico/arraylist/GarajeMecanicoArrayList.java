@@ -18,11 +18,11 @@ public class GarajeMecanicoArrayList  {
      */
     public static void main(String[] args) {
       
-    ReparacionesMecanicas A = new ReparacionesMecanicas(0,"Esta roto una ventana",0);
-    ReparaciondeChapayPintura B = new ReparaciondeChapayPintura(1,"Esta roto la rueda",0);
-    Revision C = new Revision(2,"Esta roto la puerta",0);
-    Revision D = new Revision(3,"TEST", 0);
-    ReparaciondeChapayPintura E = new ReparaciondeChapayPintura(0,"OtroTest", 0);
+    ReparacionesMecanicas A = new ReparacionesMecanicas(0,"RepM, Esta roto una ventana",0,0);
+    ReparaciondeChapayPintura B = new ReparaciondeChapayPintura(0,"RepCyP, Esta roto la rueda",0,0);
+    Revision C = new Revision(0,"Rev,Esta roto la puerta",0,0);
+    Revision D = new Revision(0,"TEST", 0,0);
+    ReparaciondeChapayPintura E = new ReparaciondeChapayPintura(0,"OtroTest", 0,0);
     
     
      
@@ -37,14 +37,7 @@ public class GarajeMecanicoArrayList  {
     works.add(E);
     
    for (Trabajos t : works) {
-
-
-
-    
-  
-    
-    
-    System.out.println("Trabajos Actual: IdTrabajos:"+ t.getIdTrabajo()+ " Detalle: "+ t.getTrabajoDescripcion()+ " Horas: "+ t.getHoras());
+System.out.println("Trabajos Actual: IdTrabajos:"+ t.getIdTrabajo()+ " Detalle: "+ t.getTrabajoDescripcion()+ " Horas: "+ t.getHoras());
      }
     
     
@@ -77,41 +70,25 @@ public class GarajeMecanicoArrayList  {
      
     
     System.out.println("Los detalles?");
-    Scanner can = new Scanner(System.in);
-    
-    
-    String f = null;
-    works.add(new ReparacionesMecanicas(0,f,0)); 
+    Scanner panner = new Scanner(System.in);
+    String f=(panner.nextLine());
+    works.add(new ReparacionesMecanicas(0,f,0,0));
+    scan.close();
     break;
-      
+    
       
       }
 
             
       
     
-    scan.close();
-    
-    
-    
-    
-    
-    
-  
-   
-    
-   
- 
     
     if (p.equals("Revision")){
         
         System.out.println("Los detalles?");
-    Scanner can = new Scanner(System.in);
-    
-    
-    
+        Scanner can = new Scanner(System.in);
         String f=(can.nextLine());
-        Revision w = new Revision(0,f,0);
+        Revision w = new Revision(0,f,0,0);
         works.add(w);
         scan.close();
         break;
@@ -138,10 +115,51 @@ public class GarajeMecanicoArrayList  {
 
       
     break;  
-      
-      
-     
+    case "c":
         
+         System.out.println("Cual es el numbero de Trabajo?");
+      
+    int m = scan.nextInt();
+      
+    System.out.println("Cuanto quieres aumentar?"); 
+    int costedePieza = scan.nextInt();
+    Trabajos c = new Trabajos();
+    c.setCostedePieza(costedePieza);
+    works.set(m,c);
+    break;
+        
+        
+    case "d":
+        
+       System.out.println("Finaliza Trabajo ahora Calcular Precio");
+        
+       System.out.println("Que Tipo de Trabajo?");
+       Scanner scanner = new Scanner(System.in);
+       String n = scan.next();
+      
+       if (n.equals("RepM")){
+          ReparacionesMecanicas F = new ReparacionesMecanicas();
+          System.out.println("Cuanto horas era el trabajo al final");
+          
+          int finalhoras = scan.nextInt();
+          
+          System.out.println("Cuanto era el coste final de las piezas?");
+          
+          int finalpiezas = scan.nextInt();
+          
+          System.out.println ("El precio final de tu trabajo es  "+ F.PrecioReparacionesMecanicas(finalhoras, finalpiezas)+ "euros");
+          
+      }
+       
+       
+       
+       
+       System.out.println("Coste de la piezas?");
+       
+       int costeFinaldePiezas = scan.nextInt();
+        
+       
+//       System.out.println("El coste final de tu Trabajo es" + );
         
    
     case "?":

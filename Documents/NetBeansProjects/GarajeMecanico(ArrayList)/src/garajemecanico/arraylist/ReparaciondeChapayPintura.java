@@ -11,8 +11,8 @@ package garajemecanico.arraylist;
  */
 public class ReparaciondeChapayPintura extends Trabajos {
 
-    public ReparaciondeChapayPintura(int IdTrabajo, String TrabajoDescripcion, int horas) {
-        super(IdTrabajo, TrabajoDescripcion, horas);
+    public ReparaciondeChapayPintura(int IdTrabajo, String TrabajoDescripcion, int horas, int costedePieza) {
+        super(IdTrabajo, TrabajoDescripcion, horas, costedePieza);
     }
     
     public double PrecioReparacionesChapayPintura(double horas, double costedePieza) {

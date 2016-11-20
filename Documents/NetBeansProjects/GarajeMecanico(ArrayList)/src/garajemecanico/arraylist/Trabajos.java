@@ -16,20 +16,31 @@ public class Trabajos {
     String TrabajoDescripcion;
     private int horas;
     private static int contador = 0;
-    
+    private int costedePieza;
     
     public Trabajos() {
     TrabajoDescripcion = "";
     IdTrabajo = 0;
     horas = 0;
-}
+    costedePieza = 0;
+    
+    }
 
-    public Trabajos(int IdTrabajo, String TrabajoDescripcion, int horas) {
+    public int getCostedePieza() {
+        return costedePieza;
+    }
+
+    public void setCostedePieza(int costedePieza) {
+        this.costedePieza = costedePieza;
+    }
+
+    public Trabajos(int IdTrabajo, String TrabajoDescripcion, int horas,int costedePieza) {
         counter++;
         
         this.IdTrabajo = counter;
         this.TrabajoDescripcion = TrabajoDescripcion;
         this.horas = horas;
+        this.costedePieza = costedePieza;
     }
 
     public int getIdTrabajo() {
@@ -54,16 +65,16 @@ public class Trabajos {
     }
 
     public void setHoras(int horas) {
-       
-       
-        this.horas = horas;
+       this.horas = horas;
         
     }
 
     @Override
     public String toString() {
-        return "Trabajos{" + "IdTrabajo=" + IdTrabajo + ", TrabajoDescripcion=" + TrabajoDescripcion + ", horas=" + horas + '}';
+        return "Trabajos{" + "IdTrabajo=" + IdTrabajo + ", TrabajoDescripcion=" + TrabajoDescripcion + ", horas=" + horas + ", costedePieza=" + costedePieza + '}';
     }
+
+    
 
     
     
