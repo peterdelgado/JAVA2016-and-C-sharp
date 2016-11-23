@@ -9,13 +9,13 @@ package garajemecanico.arraylist;
  *
  * @author pedro
  */
-public class Trabajos {
+public  class Trabajos {
     
     private static int counter = 0;
     private int IdTrabajo;
     String TrabajoDescripcion;
     private int horas;
-    private static int contador = 0;
+   
     private int costedePieza;
     
     public Trabajos() {

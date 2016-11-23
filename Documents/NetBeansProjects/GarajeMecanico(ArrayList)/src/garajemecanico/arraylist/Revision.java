@@ -11,6 +11,12 @@ package garajemecanico.arraylist;
  */
 public class Revision extends Trabajos {
 
+    public Revision(){
+        
+        
+    }
+    
+    
     public Revision(int IdTrabajo, String TrabajoDescripcion, int horas, int costedePieza) {
         super(IdTrabajo, TrabajoDescripcion, horas, costedePieza);
     }

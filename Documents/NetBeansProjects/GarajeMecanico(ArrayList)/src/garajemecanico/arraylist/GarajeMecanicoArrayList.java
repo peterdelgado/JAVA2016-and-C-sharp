@@ -4,9 +4,13 @@
  * and open the template in the editor.
  */
 package garajemecanico.arraylist;
+import static garajemecanico.arraylist.InputData.pedirEntero;
 import java.util.ArrayList;
 import java.util.*;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 /**
  *
  * @author pedro
@@ -16,9 +20,9 @@ public class GarajeMecanicoArrayList  {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
       
-    ReparacionesMecanicas A = new ReparacionesMecanicas(0,"RepM, Esta roto una ventana",0,0);
+    ReparacionesMecanicas A = new ReparacionesMecanicas(0,"RepM, Esta roto una ventana",2,0);
     ReparaciondeChapayPintura B = new ReparaciondeChapayPintura(0,"RepCyP, Esta roto la rueda",0,0);
     Revision C = new Revision(0,"Rev,Esta roto la puerta",0,0);
     Revision D = new Revision(0,"TEST", 0,0);
@@ -53,9 +57,8 @@ System.out.println("Trabajos Actual: IdTrabajos:"+ t.getIdTrabajo()+ " Detalle: 
     System.out.println("?: Display");
     System.out.println("q: Quit");
 
-
-    Scanner scan = new Scanner(System.in);
-    String choice = scan.nextLine();
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String choice = br.readLine();
     
     do {
     switch (choice){
@@ -64,16 +67,16 @@ System.out.println("Trabajos Actual: IdTrabajos:"+ t.getIdTrabajo()+ " Detalle: 
         
     System.out.println("Que tipo de Trabajo quieres registrar?");
     
-    String p = scan.nextLine();
+    String p = br.readLine();
     if (p.equals("RepM")) {
      
      
     
     System.out.println("Los detalles?");
-    Scanner panner = new Scanner(System.in);
-    String f=(panner.nextLine());
+    BufferedReader tr = new BufferedReader(new InputStreamReader(System.in));
+    String f=(tr.readLine());
     works.add(new ReparacionesMecanicas(0,f,0,0));
-    scan.close();
+    tr.close();
     break;
     
       
@@ -86,43 +89,89 @@ System.out.println("Trabajos Actual: IdTrabajos:"+ t.getIdTrabajo()+ " Detalle: 
     if (p.equals("Revision")){
         
         System.out.println("Los detalles?");
-        Scanner can = new Scanner(System.in);
-        String f=(can.nextLine());
+        BufferedReader tr = new BufferedReader(new InputStreamReader(System.in));
+        
+        String f=(tr.readLine());
         Revision w = new Revision(0,f,0,0);
         works.add(w);
-        scan.close();
+        tr.close();
         break;
+        
+    
         
     }
         
         
-        
-      
-        
-    
+       
     break;
     case "b":
-         
-    System.out.println("Cual es el numbero de Trabajo?");
-      
-    int l = scan.nextInt();
-      
-    System.out.println("Cuantas horas quieres aumentar?"); 
-    int horas = scan.nextInt();
-    Trabajos d = new Trabajos();
-    d.setHoras(horas);
-    works.set(l,d);
+    
+   
+    boolean encontrado = false;
 
+    int l  = pedirEntero("Cual es el numero de Trabajo?");
+   
+   
+    
+    
+    if (works.size() >= l) {
+    encontrado = true;
+    
+            }
+    else {
+    System.out.println("No Existe!");
+    encontrado = false;
+    
+   
+    
+    }
+     
+    
+    System.out.println("Cuantas horas quieres aumentar?"); 
+//   El setHoras est? bien, lo que no est? bien es que t? pides cu?ntas horas quieres aumentar
+//   pero no las aumentas sino que las sustituyes. Deber?as coger las horas que tiene ese trabajo, 
+//   aumentarlas en la cantidad q indica el usuario y "setear" esas horas, me explico?
+    int newhoras = Integer.parseInt(br.readLine());
+    
+    Trabajos d = new Trabajos();
+    
+    Trabajos oldhoras = works.get(l-1);
+    
+    int ok = ((Integer)oldhoras.getHoras()) + newhoras;
+   
+   System.out.println("Horas anteriores:"+(Integer)oldhoras.getHoras());
+   System.out.println("Horas nuevas:" + newhoras);  
+   System.out.println("Horas Totales");
+     
+   d.setHoras(ok);
+   works.set(l-1,d);
+
+
+    
+    
+    
+    
+    
+ 
+    
+  
+    
+   
+    
       
-    break;  
+    break;                                
+    
+    
     case "c":
         
-         System.out.println("Cual es el numbero de Trabajo?");
-      
-    int m = scan.nextInt();
-      
+    System.out.println("Cual es el numbero de Trabajo?");
+    BufferedReader rr = new BufferedReader(new InputStreamReader(System.in));  
+    int m = rr.read();
+    
+    BufferedReader rz = new BufferedReader(new InputStreamReader(System.in));   
     System.out.println("Cuanto quieres aumentar?"); 
-    int costedePieza = scan.nextInt();
+    int costedePieza = rz.read();
+    
     Trabajos c = new Trabajos();
     c.setCostedePieza(costedePieza);
     works.set(m,c);
@@ -131,32 +180,60 @@ System.out.println("Trabajos Actual: IdTrabajos:"+ t.getIdTrabajo()+ " Detalle: 
         
     case "d":
         
-       System.out.println("Finaliza Trabajo ahora Calcular Precio");
-        
-       System.out.println("Que Tipo de Trabajo?");
-       Scanner scanner = new Scanner(System.in);
-       String n = scan.next();
+    System.out.println("Finaliza Trabajo ahora Calcular Precio");
+    BufferedReader tt = new BufferedReader(new InputStreamReader(System.in));  
+    System.out.println("Que Tipo de Trabajo?");
+       
+    String n = tt.readLine();
       
-       if (n.equals("RepM")){
-          ReparacionesMecanicas F = new ReparacionesMecanicas();
-          System.out.println("Cuanto horas era el trabajo al final");
+    if (n.equals("RepM")){
+    ReparacionesMecanicas F = new ReparacionesMecanicas();
+    System.out.println("Cuanto horas era el trabajo al final");
+    int finalhoras = tt.read();
           
-          int finalhoras = scan.nextInt();
+    System.out.println("Cuanto era el coste final de las piezas?");
+    int finalpiezas = tt.read();
+    
+    System.out.println ("El precio final de tu trabajo es  "+ F.PrecioReparacionesMecanicas(finalhoras, finalpiezas)+ "euros");
+          
+      }
+       
+    if (n.equals("Revision")){
+    Revision Z = new Revision();
+          
+    System.out.println("Cuanto horas era el trabajo al final");
+          
+          double finalhoras = tt.read();;
           
           System.out.println("Cuanto era el coste final de las piezas?");
           
-          int finalpiezas = scan.nextInt();
+          double finalpiezas = tt.read();
           
-          System.out.println ("El precio final de tu trabajo es  "+ F.PrecioReparacionesMecanicas(finalhoras, finalpiezas)+ "euros");
+          System.out.println ("El precio final de tu trabajo es  "+ Z.PrecioRevision(finalhoras)+ "euros");
           
       }
        
        
+       if (n.equals("RepCP")){
+          
+         ReparaciondeChapayPintura L = new ReparaciondeChapayPintura();
+          
+          System.out.println("Cuanto horas era el trabajo al final");
+          double finalhoras = tt.read();
+          
+          
+          System.out.println("Cuanto era el coste final de las piezas?");
+          double finalpiezas = tt.read();
+          
+          
+          System.out.println ("El precio final de tu trabajo es  "+ L.PrecioReparacionesChapayPintura(finalhoras,finalpiezas)+ "euros");
+          
+      }
        
        
        System.out.println("Coste de la piezas?");
        
-       int costeFinaldePiezas = scan.nextInt();
+       int costeFinaldePiezas = tt.read();
         
        
 //       System.out.println("El coste final de tu Trabajo es" + );
@@ -171,27 +248,31 @@ System.out.println("Trabajos Actual: IdTrabajos:"+ t.getIdTrabajo()+ " Detalle: 
             System.out.println("e: Muestra Trabajo");
             System.out.println("?: Display");
             System.out.println("q: Quit");
-            break;
-        }  }while (choice == "");
-
- 
-    for (Trabajos t : works) {
-
-
-
-    
-  
+    }   break;
+          }while (choice == "");
     
     
-    System.out.println("Trabajos Actual: IdTrabajos:"+ t.getIdTrabajo()+ " Detalle: "+ t.getTrabajoDescripcion()+ " Horas: "+ t.getHoras());
+   
+    for (Trabajos t : works){
+         
+      
+        System.out.println("Trabajos Actual: IdTrabajos:"+ t.getIdTrabajo()+ " Detalle: "+ t.getTrabajoDescripcion()+ " Horas: "+ t.getHoras());
      }
     
-    } 
     
     
-  
-    
+       
+    }
+     
+
+
+
+
+
 }
+    
+    
+
 
     
     
