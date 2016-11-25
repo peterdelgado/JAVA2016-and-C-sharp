@@ -5,6 +5,9 @@
  */
 package agendadecontactos.hashmap;
 
+import java.util.HashMap;
+
+
 /**
  *
  * @author pedro
@@ -13,7 +16,40 @@ public class Contactos {
     
     private String Nombre;
     private int NumerodeTelefono;
+    private String addContacto;
+    private String removeContacto;
+    private String replaceContacto;
+    private String borrarContactos;
 
+    public Contactos() {
+    }
+    
+    public void clear(){
+        
+    }
+
+   public String getAddContacto() {
+        return addContacto;
+    }
+
+    public void setAddContacto(String addContacto) {
+        this.addContacto = addContacto;
+    }
+
+    public void setRemoveContacto(String removeContacto) {
+        this.removeContacto = removeContacto;
+    }
+
+    public String getReplaceContacto() {
+        return replaceContacto;
+    }
+
+    public void setReplaceContacto(String replaceContacto) {
+        this.replaceContacto = replaceContacto;
+    }
+    
+    
+    
     public Contactos(String Nombre, int NumerodeTelefono) {
         this.Nombre = Nombre;
         this.NumerodeTelefono = NumerodeTelefono;
