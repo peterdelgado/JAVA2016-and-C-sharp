@@ -1,10 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package excepciones;
 
+
+
+
+package excepciones;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 /**
  *
  * @author pedro
@@ -16,15 +17,22 @@ public class ExcepcionesMAIN {
      */
     public static void main(String[] args) {
       String message;
-        
+      
         try {
+            
+
+            
             Persona p = new Persona();
-            p.setNombre("Mar");
-            p.setEdad(55);
+            p.setNombre("Tom Cat");
+            p.setEdad(5);
+            p.setAltura(3);
             System.out.println(p);
         } catch (Exception ex) {
             System.out.println("Error al crear la persona: " + ex.getMessage());
-//            Logger.getLogger(ExcepcionesMAIN.class.getName()).log(Level.SEVERE, null, ex);
+
+       
+        
+        
         } 
     }
     

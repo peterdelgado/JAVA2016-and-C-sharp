@@ -9,8 +9,19 @@ package excepciones;
  *
  * @author pedro
  */
+
 public class Excepciones extends Exception {
-  
+
+
+    
+
+    public Excepciones() {
+    }
+
+    
+
+
+
  
    
    

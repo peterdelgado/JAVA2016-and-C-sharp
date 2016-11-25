@@ -18,6 +18,13 @@ public class Persona {
     private int edad;
     private int decimal;
     private String message;
+    private int altura;
+    private int counter;
+
+    @Override
+    public String toString() {
+        return "Persona{" + "nombre=" + nombre + ", edad=" + edad  + ", message=" + message + ", altura=" + altura + '}';
+    }
 
     public String getMessage() {
         return message;
@@ -30,8 +37,9 @@ public class Persona {
     
     public Persona(){
         
-        
-        
+         nombre = "";
+         edad = 0;
+         altura = 0;
     }
     
     
@@ -48,9 +56,7 @@ public class Persona {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+    
 
     public int getEdad() {
         return edad;
@@ -58,79 +64,115 @@ public class Persona {
 
     
 
-    public int getDecimal() {
-        return decimal;
-    }
-
-    public void setDecimal(int decimal) {
-        this.decimal = decimal;
-    }
     
     
-//    public void setEdad(int edad) throws Excepciones {
-//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-//        boolean error = false;
-//        do {
-//            try {
-////               if (edad > 120 || edad < 0) {
-////               throw new Excepciones("Edad incorrecta debe estar entre 0 y 120");
-////               
-////               }
-////               else { 
-////               
-////               this.edad = edad;
-////               } 
-//            } catch (IOException ex) {
-//                System.out.println("Error entrada salida");
-//                error = true;
-//            } catch (NumberFormatException ex) {
-//                System.out.println("No has introducido un numero.");
-//                error = true;
-//            }
-//        } while (error);
-//        
-//    }
     
-    public void setEdad(int edad) throws Excepciones {
+public void setNombre(String nombre) throws Excepciones, IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        double numero = 0;
+       
         boolean error = false;
         do {
             try {
+               System.out.println("Que es tu nombre?)");
+                
+                nombre = br.readLine();
+                char c = nombre.charAt(0);
+                if( Character.isDigit(c)){
+                error = true;
+                System.out.println("No numbers allowed!");
+                counter++;
+                        
+                        
+                        
+                }
+                else if (Character.isLetter(c)) {
+                this.nombre = nombre;
+                error = false;
+                }
+
+                
+            } catch (IOException ex) {
+                System.out.println("Error entrada salida");
+                error = true;
+                counter++;
+            } if (counter > 5){
+                error= false;
+                throw new Excepciones("More than 5 errors! Game over!");
+            }  
+                
+        } while (error);
+       
+    
+}
+    
+    public void setEdad(int edad) throws Excepciones, IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+       
+        boolean error = false;
+        do { System.out.println("Que es tu edad?)");
+            try {
+               edad = Integer.parseInt(br.readLine());
                 if (edad > 120 || edad < 0) {
+               counter++;
                throw new Excepciones("Edad incorrecta debe estar entre 0 y 120");
-               
-               }
+                
+                }
+                else  {
+                this.edad = edad;
+                error = false;
+                
+                }
+             } catch (IOException ex) {
+                System.out.println("Error entrada salida");
+                error = true;
+            } catch (NumberFormatException ex) {
+                System.out.println("No has introducido un numero.");
+                error = true;
+                 counter++;
+            }if (counter > 5){
+                error= false;
+                throw new Excepciones("More than 5 errors! Game over!");
+            }  
+        } while (error);
+       
+    }
+    
+    public void setAltura(int altura) throws Excepciones, IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+       
+        boolean error = false;
+        do { System.out.println("Que es tu altura?)");
+            try {
+               if (altura > 120 || altura < 0) {
+               throw new Excepciones("Edad incorrecta debe estar entre 0 y 120");
+                }
                else { 
                
-                numero = Double.parseDouble(br.readLine());
-                error = false;
+               altura = Integer.parseInt(br.readLine());
+               this.altura = altura;
+               error = false;
                } 
                 
-               
             } catch (IOException ex) {
                 System.out.println("Error entrada salida");
                 error = true;
             } catch (NumberFormatException ex) {
-                System.out.println("No has introducido un número.");
+                System.out.println("No has introducido un numero.");
                 error = true;
+                counter++;
+            }if (counter > 5){
+                error= false;
+                throw new Excepciones("More than 5 errors! Game over!");
             }
+            
+            
         } while (error);
-       this.edad = edad;
+       
+   
     }
     
-    
-    
-    
+   
   
 } 
     
 
-//if (edad > 120 || edad < 0) {
-////               throw new Excepciones("Edad incorrecta debe estar entre 0 y 120");
-////               
-////               }
-////               else { 
-////               
-////               this.edad = edad;
-////               } 
