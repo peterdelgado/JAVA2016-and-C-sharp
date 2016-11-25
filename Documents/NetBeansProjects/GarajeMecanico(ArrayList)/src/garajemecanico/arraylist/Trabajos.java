@@ -17,6 +17,23 @@ public  class Trabajos {
     private double horas;
     private double costedePieza;
     private boolean finish;
+    private double preciofinal;
+
+    public static int getCounter() {
+        return counter;
+    }
+
+    public static void setCounter(int counter) {
+        Trabajos.counter = counter;
+    }
+
+    public double getPreciofinal() {
+        return preciofinal;
+    }
+
+    public void setPreciofinal(double preciofinal) {
+        this.preciofinal = preciofinal;
+    }
     
     
     public boolean isFinish() {
@@ -45,7 +62,7 @@ public  class Trabajos {
         this.costedePieza = costedePieza;
     }
 
-    public Trabajos(int IdTrabajo, String TrabajoDescripcion, double horas, double costedePieza,boolean finish) {
+    public Trabajos(int IdTrabajo, String TrabajoDescripcion, double horas, double costedePieza,boolean finish,double preciofinal) {
         counter++;
         
         this.IdTrabajo = counter;
@@ -53,6 +70,7 @@ public  class Trabajos {
         this.horas = horas;
         this.costedePieza = costedePieza;
         this.finish = finish;
+        this.preciofinal = preciofinal;
     }
 
     public int getIdTrabajo() {
@@ -68,8 +86,8 @@ public  class Trabajos {
         return TrabajoDescripcion;
     }
 
-    public void setTrabajoDescripcion(String t) {
-        this.TrabajoDescripcion = TrabajoDescripcion;
+    public String setTrabajoDescripcion(String TrabajoDescripcion) {
+       return TrabajoDescripcion;
     }
 
     public double getHoras() {

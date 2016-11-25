@@ -18,9 +18,11 @@ public class ReparaciondeChapayPintura extends Trabajos {
         
     }
 
-    public ReparaciondeChapayPintura(int IdTrabajo, String TrabajoDescripcion, int horas, int costedePieza, boolean finish) {
-        super(IdTrabajo, TrabajoDescripcion, horas, costedePieza, finish);
+    public ReparaciondeChapayPintura(int IdTrabajo, String TrabajoDescripcion, double horas, double costedePieza, boolean finish, double preciofinal) {
+        super(IdTrabajo, TrabajoDescripcion, horas, costedePieza, finish, preciofinal);
     }
+
+    
 
     
     

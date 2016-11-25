@@ -20,11 +20,11 @@ public class GarajeMecanicoArrayList  {
      */
     public static void main(String[] args) throws IOException {
       
-    ReparacionesMecanicas A = new ReparacionesMecanicas(0,"RepM",2,5,true);
-    ReparaciondeChapayPintura B = new ReparaciondeChapayPintura(0,"RepCyP, Esta roto la rueda",0,0,true);
-    Revision C = new Revision(0,"Rev,Esta roto la puerta",0,4,true);
-    Revision D = new Revision(0,"TEST", 0,0,true);
-    ReparaciondeChapayPintura E = new ReparaciondeChapayPintura(0,"OtroTest", 0,0,true);
+    ReparacionesMecanicas A = new ReparacionesMecanicas(0,"RepM, no sirve nada",2,5,true,0);
+    ReparaciondeChapayPintura B = new ReparaciondeChapayPintura(0,"RepCyP, Esta roto la rueda",0,0,true,0);
+    Revision C = new Revision(0,"Rev,Esta roto la puerta",0,4,true,0);
+    Revision D = new Revision(0,"TEST", 0,0,true,0);
+    ReparaciondeChapayPintura E = new ReparaciondeChapayPintura(0,"OtroTest", 0,0,true,0);
     
     
      
@@ -73,7 +73,7 @@ System.out.println("Trabajos Actual: IdTrabajos:"+ t.getIdTrabajo()+ " Detalle: 
     System.out.println("Los detalles?");
     BufferedReader tr = new BufferedReader(new InputStreamReader(System.in));
     String f=(tr.readLine());
-    works.add(new ReparacionesMecanicas(0,f,0,0,true));
+    works.add(new ReparacionesMecanicas(0,f,0,0,true,0));
     tr.close();
     break;
     
@@ -90,7 +90,7 @@ System.out.println("Trabajos Actual: IdTrabajos:"+ t.getIdTrabajo()+ " Detalle: 
         BufferedReader tr = new BufferedReader(new InputStreamReader(System.in));
         
         String f=(tr.readLine());
-        Revision w = new Revision(0,f,0,0,true);
+        Revision w = new Revision(0,f,0,0,true,0);
         works.add(w);
         tr.close();
         break;
@@ -149,7 +149,6 @@ System.out.println("Trabajos Actual: IdTrabajos:"+ t.getIdTrabajo()+ " Detalle: 
         
     int s = pedirEnteroCostedeFinal("Finalizar Trabajo, que es el numero del Trabajo?");
     
-    
     Trabajos finalhoras = works.get(s-1);
     double finalhours = ((Double)finalhoras.getHoras());
     
@@ -159,9 +158,35 @@ System.out.println("Trabajos Actual: IdTrabajos:"+ t.getIdTrabajo()+ " Detalle: 
     Trabajos finaljob = works.get(s-1);
     String trabajofinal = ((String)finaljob.getTrabajoDescripcion());   
     
-    if (trabajofinal.equals("RepM")){
+    System.out.println("TEST"+trabajofinal);
+    
+    
+    if (trabajofinal.contains("RepM")){
     
         System.out.println ("El precio final de tu trabajo es  "+ A.PrecioReparacionesMecanicas(finalhours,finalpieces)+ "euros");
+        
+        Trabajos cierraTrabajo = works.get(s-1);
+       
+        boolean finish = cierraTrabajo.isFinish();
+        
+        Trabajos preciofinal = works.get(s-1);
+        
+        preciofinal.setPreciofinal(A.PrecioReparacionesMecanicas(finalhours,finalpieces));
+        
+    
+        Trabajos closeJob = works.get(s-1);
+                
+        double finishpublico = ((double)closeJob.getPreciofinal());
+    
+        System.out.println(finishpublico);
+        
+        
+        
+    }
+          
+    if (trabajofinal.contains("Rev")){
+    
+        System.out.println ("El precio final de tu trabajo es  "+ C.PrecioRevision(finalhours)+ "euros");
         
         Trabajos cierraTrabajo = works.get(s-1);
        
@@ -170,29 +195,38 @@ System.out.println("Trabajos Actual: IdTrabajos:"+ t.getIdTrabajo()+ " Detalle: 
         
     }
           
+    if (trabajofinal.contains("RepCyP")){
     
-          
-    
-       
-       
-    if (trabajofinal.contains("RepCP")){
-          
-    ReparaciondeChapayPintura L = new ReparaciondeChapayPintura();
-          
-    System.out.println("Cuanto horas era el trabajo al final");
-          
-          
-          System.out.println("Cuanto era el coste final de las piezas?");
-          
-    }   
-//     }     
-//          System.out.println ("El precio final de tu trabajo es  "+ L.PrecioReparacionesChapayPintura(finalhoras,finalpiezas)+ "euros");
-//          
-//      }
-       
-       
-       
+        System.out.println ("El precio final de tu trabajo es  "+ E.PrecioReparacionesChapayPintura(finalhours,finalpieces)+ "euros");
         
+        Trabajos cierraTrabajo = works.get(s-1);
+       
+        boolean finish = cierraTrabajo.isFinish();
+        
+        Trabajos closeJob = works.get(s-1);
+        
+        String finishpublico = ((String)closeJob.setTrabajoDescripcion("Finalizado!"));
+    
+        
+        
+    }
+       
+    case "E":
+         int o  = pedirEntero("Que Trabajo quieres ver?");
+        
+          
+        Trabajos finalId = works.get(o-1);
+        
+        int finishId = ((Integer)finalId.getIdTrabajo());
+        
+        Trabajos finaldescrip = works.get(o-1);
+                
+        String finallythend = ((String)finaldescrip.getTrabajoDescripcion());          
+        
+        Trabajos finalprice = works.get(o-1);
+        double preciofinal = ((double)finalprice.getPreciofinal());
+        
+        System.out.println("IdTrabjo:"  + finishId    +"Descripcion:" + finallythend + "Precio Final:" + preciofinal);
    
     case "?":
             System.out.println("Command Options: ");
@@ -211,7 +245,7 @@ System.out.println("Trabajos Actual: IdTrabajos:"+ t.getIdTrabajo()+ " Detalle: 
     for (Trabajos t : works){
          
       
-        System.out.println("Trabajos Actual: IdTrabajos:"+ t.getIdTrabajo()+ " Detalle: "+ t.getTrabajoDescripcion()+ " Horas: "+ t.getHoras() + "Coste de Pieza "+ t.getCostedePieza());
+        System.out.println("Trabajos Actual: IdTrabajos:"+ t.getIdTrabajo()+ " Detalle: "+ t.getTrabajoDescripcion()+ " Horas: " + t.getHoras()+   "Coste de Pieza " + t.getCostedePieza() + "Precio final:" + t.getPreciofinal());
      }
     
     

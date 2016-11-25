@@ -18,9 +18,11 @@ public class ReparacionesMecanicas extends Trabajos {
         
    }
 
-    public ReparacionesMecanicas(int IdTrabajo, String TrabajoDescripcion, double horas, double costedePieza, boolean finish) {
-        super(IdTrabajo, TrabajoDescripcion, horas, costedePieza, finish);
+    public ReparacionesMecanicas(int IdTrabajo, String TrabajoDescripcion, double horas, double costedePieza, boolean finish, double preciofinal) {
+        super(IdTrabajo, TrabajoDescripcion, horas, costedePieza, finish, preciofinal);
     }
+
+   
 
     
     
@@ -35,7 +37,10 @@ public class ReparacionesMecanicas extends Trabajos {
     double precio;
     costedePieza = costedePieza * 1.1;
     precio = costedePieza + horas * 30;
-        return precio;
+    
+    
+    
+    return precio;
     
 }
 }
