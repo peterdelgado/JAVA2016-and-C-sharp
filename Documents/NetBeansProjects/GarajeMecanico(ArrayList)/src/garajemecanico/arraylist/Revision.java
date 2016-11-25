@@ -15,11 +15,13 @@ public class Revision extends Trabajos {
         
         
     }
-    
-    
-    public Revision(int IdTrabajo, String TrabajoDescripcion, int horas, int costedePieza) {
-        super(IdTrabajo, TrabajoDescripcion, horas, costedePieza);
+
+    public Revision(int IdTrabajo, String TrabajoDescripcion, int horas, int costedePieza, boolean finish) {
+        super(IdTrabajo, TrabajoDescripcion, horas, costedePieza, finish);
     }
+    
+    
+    
     
     public double PrecioRevision(double horas) {
     double precio;

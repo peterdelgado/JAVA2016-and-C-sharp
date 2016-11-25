@@ -18,10 +18,18 @@ public class ReparacionesMecanicas extends Trabajos {
         
    }
 
-   public ReparacionesMecanicas(int IdTrabajo, String TrabajoDescripcion, int horas, int costedePieza) {
-   super(IdTrabajo, TrabajoDescripcion, horas, costedePieza);
-        
-          }
+    public ReparacionesMecanicas(int IdTrabajo, String TrabajoDescripcion, double horas, double costedePieza, boolean finish) {
+        super(IdTrabajo, TrabajoDescripcion, horas, costedePieza, finish);
+    }
+
+    
+    
+
+   
+
+    
+    
+  
     
     public double PrecioReparacionesMecanicas(double horas, double costedePieza) {
     double precio;
