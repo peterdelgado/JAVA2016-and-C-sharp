@@ -19,7 +19,7 @@ namespace InterfazVisor
     public partial class Form1 : Form
     {
         Boolean arrastrando;
-        VisorFoto A = new VisorFoto();
+        VisorFoto A = new VisorFoto(486,256);
         Point offset;
         public Form1()
 
@@ -68,10 +68,30 @@ namespace InterfazVisor
         private void button1_Click(object sender, EventArgs e)
         {
             openFileDialog1.ShowDialog();
-            String nombre = openFileDialog1.FileName;
-            Image b = Bitmap.FromFile(nombre);
-            pictureBox1.Image = b;
-sssss
+
+            foreach(String nombre in openFileDialog1.FileNames)
+            {
+
+                A.Agregar_Foto((Bitmap)Bitmap.FromFile(nombre));
+                
+            
+             }
+            pictureBox1.Image = A.Foto_Actual();
+
+
+
+           
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+            A.Next_Foto();
+            pictureBox1.Image = A.Next_Foto();
+
         }
     }
 }
+            // String nombre = openFileDialog1.FileName
+            // Image b = Bitmap.FromFile(nombre);
+            // pictureBox1.Image = b;
