@@ -73,6 +73,7 @@ namespace InterfazVisor
             {
 
                 A.Agregar_Foto((Bitmap)Bitmap.FromFile(nombre));
+
                 
             
              }
@@ -90,6 +91,12 @@ namespace InterfazVisor
             pictureBox1.Image = A.Next_Foto();
 
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+            pictureBox1.Image = A.rotar_hor();
+        }p
     }
 }
             // String nombre = openFileDialog1.FileName
