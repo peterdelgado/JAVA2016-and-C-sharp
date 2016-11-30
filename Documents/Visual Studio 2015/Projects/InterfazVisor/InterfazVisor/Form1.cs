@@ -64,5 +64,14 @@ namespace InterfazVisor
             arrastrando = true;
             offset = e.Location;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.ShowDialog();
+            String nombre = openFileDialog1.FileName;
+            Image b = Bitmap.FromFile(nombre);
+            pictureBox1.Image = b;
+sssss
+        }
     }
 }
