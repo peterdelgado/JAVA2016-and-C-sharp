@@ -82,5 +82,17 @@ namespace InterfazVisor
 
             }
         }
+
+        private void Form1_MouseUp(object sender, MouseEventArgs e)
+        {
+            arrastrando = true;
+            offset = e.Location;
+        }
+
+        private void Form1_MouseDown(object sender, MouseEventArgs e)
+        {
+            arrastrando = true;
+            offset = e.Location;
+        }
     }
 }
